@@ -1,0 +1,10 @@
+*~
+build
+dist
+*.egg-info
+*.pyc
+__pycache__
+.sconsign*
+zstd
+zstdpy-*
+PKG-INFO

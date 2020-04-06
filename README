@@ -1,0 +1,6 @@
+Demonstration pure-Python zstd decoder.
+
+See also wasmer, a preferable wasm runtime.
+
+Uses single-file-decoder example from zstd source compiled with
+buildwasm.sh

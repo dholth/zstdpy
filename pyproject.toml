@@ -1,0 +1,11 @@
+[tool]
+
+[tool.enscons]
+name = "zstdpy"
+version = "0.0.1"
+description = "Pure-Python ZSTD decoder"
+src_root = ""
+install_requires= ["pywasm"]
+
+[build-system]
+requires = ["pytoml>=0.1", "enscons"]
