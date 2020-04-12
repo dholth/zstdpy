@@ -41,7 +41,7 @@ lic = [
 whl = env.WhlFile([platlib] + lic)
 
 # Add automatic source files, plus any other needed files.
-sdist_source = FindSourceFiles()
+sdist_source = FindSourceFiles() + ["PKG-INFO"]
 
 sdist = env.SDist(source=sdist_source)
 
