@@ -1,0 +1,11 @@
+[tool]
+
+[tool.enscons]
+name = "dezstd"
+version = "0.0.1"
+description = "ZSTD decompression only library"
+src_root = ""
+install_requires= ["cffi"]
+
+[build-system]
+requires = ["pytoml>=0.1", "enscons"]
