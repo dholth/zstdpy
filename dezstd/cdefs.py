@@ -35,6 +35,23 @@ size_t ZSTD_decompressStream(ZSTD_DStream* zds, ZSTD_outBuffer* output, ZSTD_inB
 
 size_t ZSTD_DStreamInSize(void);
 size_t ZSTD_DStreamOutSize(void);
+
+unsigned    ZSTD_isError(size_t code);          /*!< tells if a `size_t` function result is an error code */
+const char* ZSTD_getErrorName(size_t code);     /*!< provides readable string from an error code */
+
+typedef enum {
+  ZSTD_d_windowLogMax,
+  ...
+} ZSTD_dParameter;
+
+typedef struct {
+    size_t error;
+    int lowerBound;
+    int upperBound;
+} ZSTD_bounds;
+
+ZSTD_bounds ZSTD_dParam_getBounds(ZSTD_dParameter dParam);
+size_t ZSTD_DCtx_setParameter(ZSTD_DCtx* dctx, ZSTD_dParameter param, int value);
 """
 )
 

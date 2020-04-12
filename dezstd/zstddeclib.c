@@ -1,25 +1,25 @@
 /**
  * \file zstddeclib.c
  * Single-file Zstandard decompressor.
- * 
+ *
  * Generate using:
  * \code
  *	combine.sh -r ../../lib -r ../../lib/common -r ../../lib/decompress -o zstddeclib.c zstddeclib-in.c
  * \endcode
  */
-/* 
+/*
  * BSD License
- * 
+ *
  * For Zstandard software
- * 
+ *
  * Copyright (c) 2016-present, Facebook, Inc. All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * * Redistributions of source code must retain the above copyright notice,
  *   this list of conditions and the following disclaimer.
- * 
+ *
  * * Redistributions in binary form must reproduce the above copyright notice,
  *   this list of conditions and the following disclaimer in the documentation
  *   and/or other materials provided with the distribution.
@@ -27,7 +27,7 @@
  * * Neither the name Facebook nor the names of its contributors may be used
  *   to endorse or promote products derived from this software without
  *   specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -42,10 +42,10 @@
  */
 /*
  * Settings to bake for the standalone decompressor.
- * 
+ *
  * Note: It's important that none of these affects 'zstd.h' (only the
  * implementation files we're amalgamating).
- * 
+ *
  * Note: MEM_MODULE stops xxhash redefining BYTE, U16, etc., which are also
  * defined in mem.h (breaking C99 compatibility).
  */
@@ -58,7 +58,6 @@
 #define ZSTD_LIB_COMPRESSION 0
 #define ZSTD_LIB_DEPRECATED 0
 #define ZSTD_NOBENCH
-#define ZSTD_STRIP_ERROR_STRINGS
 
 /**** start inlining debug.c ****/
 /* ******************************************************************
@@ -3058,7 +3057,7 @@ size_t FSE_decompress(void* dst, size_t dstCapacity, const void* cSrc, size_t cS
  *  You can contact the author at :
  *  - xxHash homepage: http://www.xxhash.com
  *  - xxHash source repository : https://github.com/Cyan4973/xxHash
- * 
+ *
  * This source code is licensed under both the BSD-style license (found in the
  * LICENSE file in the root directory of this source tree) and the GPLv2 (found
  * in the COPYING file in the root directory of this source tree).
@@ -3150,7 +3149,7 @@ static void* XXH_memcpy(void* dest, const void* src, size_t size) { return memcp
  *
  * You can contact the author at :
  * - xxHash source repository : https://github.com/Cyan4973/xxHash
- * 
+ *
  * This source code is licensed under both the BSD-style license (found in the
  * LICENSE file in the root directory of this source tree) and the GPLv2 (found
  * in the COPYING file in the root directory of this source tree).
@@ -4523,9 +4522,9 @@ typedef enum {
                               * Default level is ZSTD_CLEVEL_DEFAULT==3.
                               * Special: value 0 means default, which is controlled by ZSTD_CLEVEL_DEFAULT.
                               * Note 1 : it's possible to pass a negative compression level.
-                              * Note 2 : setting a level does not automatically set all other compression parameters 
-                              *   to default. Setting this will however eventually dynamically impact the compression 
-                              *   parameters which have not been manually set. The manually set 
+                              * Note 2 : setting a level does not automatically set all other compression parameters
+                              *   to default. Setting this will however eventually dynamically impact the compression
+                              *   parameters which have not been manually set. The manually set
                               *   ones will 'stick'. */
     /* Advanced compression parameters :
      * It's possible to pin down compression parameters to some specific values.
@@ -6490,7 +6489,7 @@ typedef enum {
  *         - ZSTD_overlap_src_before_dst: The src and dst may overlap, but they MUST be at least 8 bytes apart.
  *           The src buffer must be before the dst buffer.
  */
-MEM_STATIC FORCE_INLINE_ATTR 
+MEM_STATIC FORCE_INLINE_ATTR
 void ZSTD_wildcopy(void* dst, const void* src, ptrdiff_t length, ZSTD_overlap_e const ovtype)
 {
     ptrdiff_t diff = (BYTE*)dst - (const BYTE*)src;

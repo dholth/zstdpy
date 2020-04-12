@@ -8,4 +8,4 @@ src_root = ""
 install_requires= ["cffi"]
 
 [build-system]
-requires = ["pytoml>=0.1", "enscons"]
+requires = ["pytoml>=0.1", "enscons", "cffi"]

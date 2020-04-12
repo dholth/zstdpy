@@ -3,8 +3,14 @@ build
 dist
 *.egg-info
 *.pyc
+*.os
+*.so
+_*.c
+*.out
+*.zst
 __pycache__
 .sconsign*
+.vscode
 zstd
 zstdpy-*
 PKG-INFO
