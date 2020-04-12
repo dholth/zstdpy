@@ -4,8 +4,13 @@
 name = "dezstd"
 version = "0.0.1"
 description = "ZSTD decompression only library"
+author = "Daniel Holth <dholth@fastmail.fm>"
+url = "https://github.com/dholth/zstdpy/"
 src_root = ""
-install_requires= ["cffi"]
+install_requires = ["cffi"]
+license = "BSD"
+description_file = "README.rst"
+keywords = ["zstd", "zstandard", "compression"]
 
 [build-system]
 requires = ["pytoml>=0.1", "enscons", "cffi"]

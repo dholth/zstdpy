@@ -58,4 +58,5 @@ size_t ZSTD_DCtx_setParameter(ZSTD_DCtx* dctx, ZSTD_dParameter param, int value)
 ffibuilder.set_source("_dezstd", '#include "zstddeclib.c"')
 
 if __name__ == "__main__":
+    # ffibuilder.compile(verbose=True)
     ffibuilder.emit_c_code("_dezstd.c")

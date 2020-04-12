@@ -22,7 +22,17 @@ def _check_error(ret):
 class ZSTDDecompressor(io.BufferedIOBase):
     """
     Streaming decompression of one stream.
+
+    Parameters
+    ----------
+    raw : object with .write(bytes) method. Receives decompressed data.
+    windowLogMax=None: int, or None for the default.
+        Select a size limit (in power of 2) beyond which
+        the streaming API will refuse to allocate memory buffer
+        in order to protect the host from unreasonable memory requirements.
     """
+
+    # Should this be implemented as a raw stream wrapped in a BufferedWriter?
 
     def __init__(self, raw, windowLogMax=None):
         self.raw = raw

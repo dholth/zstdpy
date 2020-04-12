@@ -12,6 +12,11 @@ env = Environment(
     WHEEL_TAG=full_tag,
 )
 
+if sys.platform == "darwin":
+    # OSX Sierra Framework builds
+    env.Append(CCFLAGS=["-F/Library/Frameworks"])
+    env.Append(LINKFLAGS=["-F/Library/Frameworks"])
+
 py_source = ["dezstd.py"]
 
 env.Command("_dezstd.c", ["cdefs.py", "zstddeclib.c"], sys.executable + "  cdefs.py")
@@ -20,15 +25,23 @@ env.Command("_dezstd.c", ["cdefs.py", "zstddeclib.c"], sys.executable + "  cdefs
 from enscons.cpyext import extension_filename
 
 ext_filename = extension_filename("_dezstd")
-module = env.LoadableModule(
-    ext_filename, ["_dezstd.c"], LIBPREFIX="", FRAMEWORKS=[], LIBS=[]
-)
+
+module = env.SharedLibrary(ext_filename, ["_dezstd.c"], LIBPREFIX="")
 
 platlib = env.Whl("platlib", py_source + [module], root="")
-whl = env.WhlFile(platlib)
+
+# include licenses in wheel
+lic = [
+    env.Command(
+        env["DIST_INFO_PATH"].File(license), license, [Copy("$TARGET", "$SOURCE")]
+    )
+    for license in ("LICENSE", "LICENSE.zstd")
+]
+
+whl = env.WhlFile([platlib] + lic)
 
 # Add automatic source files, plus any other needed files.
-sdist_source = FindSourceFiles() + ["PKG-INFO", "LICENSE", "LICENSE.zstd"]
+sdist_source = FindSourceFiles()
 
 sdist = env.SDist(source=sdist_source)
 
