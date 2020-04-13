@@ -15,6 +15,14 @@ usage
   print(output.getvalue().decode('utf-8'))
   # hello hello
 
+  # pull version
+  import dezstd, io
+  input = io.BytesIO(b"(\xb5/\xfd\x04Xa\x00\x00hello hello\n\xffz\xd5\x1a")
+  z2 = dezstd.ZSTDPullDecompressor(input)
+  print(z2.read().decode('utf-8'))
+  # hello hello
+
+
 license
 -------
 
